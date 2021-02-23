@@ -1,0 +1,1 @@
+psql --host=localhost --dbname=Timetable --username=postgres --file=init.sql
