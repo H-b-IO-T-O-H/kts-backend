@@ -58,8 +58,8 @@ func (u *TimetableHandler) CreateTimetableHandler(ctx *gin.Context) {
 
 func (u *TimetableHandler) GetTimetableWeekHandler(ctx *gin.Context) {
 	var req struct {
-		WeekNumber int `uri:"week_number" binding:"required"`
-		GroupName string `uri:"group_name" binding:"required"`
+		WeekNumber int    `uri:"week_number" binding:"required"`
+		GroupName  string `uri:"group_name" binding:"required"`
 	}
 	if err := ctx.ShouldBindUri(&req); err != nil || req.WeekNumber > 2 || req.WeekNumber <= 0 {
 		ctx.JSON(http.StatusBadRequest, common.RespErr{Message: common.EmptyFieldErr})
@@ -77,6 +77,11 @@ func (u *TimetableHandler) DeleteWeekHandler(ctx *gin.Context) {
 	var template models.DeleteEntity
 	if err := ctx.ShouldBindJSON(&template); err != nil {
 		ctx.JSON(http.StatusBadRequest, common.RespErr{Message: common.EmptyFieldErr})
+		return
+	}
+	session := u.SessionBuilder.Build(ctx)
+	if userRole := session.Get("user_role"); userRole != common.Admin && userRole != common.Methodist {
+		ctx.JSON(http.StatusForbidden, common.RespErr{Message: common.ForbiddenErr})
 		return
 	}
 	err := u.TimetableUseCase.DeleteTimetableWeek(template)

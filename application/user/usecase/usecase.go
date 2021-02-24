@@ -5,6 +5,7 @@ import (
 	"github.com/H-b-IO-T-O-H/kts-backend/application/common/models"
 	"github.com/H-b-IO-T-O-H/kts-backend/application/user"
 	"github.com/apsdehal/go-logger"
+	"github.com/google/uuid"
 )
 
 type UserUseCase struct {
@@ -28,4 +29,8 @@ func (u *UserUseCase) Login(user models.UserLogin) (*models.User, common.Err) {
 
 func (u *UserUseCase) CreateUserTemplate(newUser models.User) common.Err {
 	return u.repos.CreateUserTemplate(newUser)
+}
+
+func (u *UserUseCase) GetUserById(userId uuid.UUID) (*models.User, common.Err) {
+	return u.repos.GetUserById(userId)
 }
