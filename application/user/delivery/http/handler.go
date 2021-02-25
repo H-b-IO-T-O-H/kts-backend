@@ -28,7 +28,7 @@ func NewRest(router *gin.RouterGroup, useCase user.UseCase, sessionBuilder commo
 
 func (u *UserHandler) routes(router *gin.RouterGroup, AuthRequired gin.HandlerFunc) {
 	router.POST("/login", u.LoginHandler)
-	//router.POST("/create", u.CreateUserHandler)
+	router.POST("/create", u.CreateUserHandler)
 	router.Use(AuthRequired)
 	{
 		router.GET("/me", u.GetCurrentUser)
