@@ -101,7 +101,7 @@ func NewApp(config Config) *App {
 
 	store.Options(sessions.Options{
 		//Domain:   "localhost", // for postman
-		Domain: "http://135.181.207.76/login",
+		Domain:   "www.135.181.207.76",
 		MaxAge:   int((3 * 12 * time.Hour).Seconds()),
 		Secure:   false,
 		HttpOnly: true,
