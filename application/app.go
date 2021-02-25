@@ -87,19 +87,7 @@ func NewApp(config Config) *App {
 	r.Use(common.ErrorLogger(log.Error))
 	r.Use(common.ErrorMiddleware())
 	r.Use(common.Recovery())
-	//r.Use(common.Cors())
-
-	//corsConfig := cors.DefaultConfig()
-	//corsConfig.AllowOrigins = []string{"*"}
-	//corsConfig.AllowCredentials = true
-	//corsConfig.AllowMethods = []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"}
-	//corsConfig.AllowHeaders = []string{"Origin", "Content-Length", "Content-Type", "Authorization"}
-	//r.Use(cors.New(corsConfig))
-
-
-
-
-
+	r.Use(common.Cors())
 	r.NoRoute(func(c *gin.Context) {
 		c.AbortWithStatus(http.StatusNotFound)
 	})
