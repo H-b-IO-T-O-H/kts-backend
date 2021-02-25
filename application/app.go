@@ -13,6 +13,7 @@ import (
 	UserUseCase "github.com/H-b-IO-T-O-H/kts-backend/application/user/usecase"
 	"github.com/apsdehal/go-logger"
 	"github.com/asaskevich/govalidator"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/redis"
 	"github.com/gin-gonic/gin"
@@ -87,7 +88,19 @@ func NewApp(config Config) *App {
 	r.Use(common.ErrorLogger(log.Error))
 	r.Use(common.ErrorMiddleware())
 	r.Use(common.Recovery())
-	r.Use(common.Cors())
+	//r.Use(common.Cors())
+
+	corsConfig := cors.DefaultConfig()
+	corsConfig.AllowOrigins = []string{"*"}
+	corsConfig.AllowCredentials = true
+	corsConfig.AllowMethods = []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"}
+	corsConfig.AllowHeaders = []string{"Origin", "Content-Length", "Content-Type", "Authorization"}
+	r.Use(cors.New(corsConfig))
+
+
+
+
+
 	r.NoRoute(func(c *gin.Context) {
 		c.AbortWithStatus(http.StatusNotFound)
 	})
