@@ -103,11 +103,11 @@ func NewApp(config Config) *App {
 		//Domain:   "localhost", // for postman
 		Domain:   "10-tka.pp.ua",
 		MaxAge:   int((3 * 12 * time.Hour).Seconds()),
-		Secure:   false,
+		Secure:   true,
 		HttpOnly: true,
 		Path:     "/",
-		SameSite: http.SameSiteNoneMode,
-		//SameSite: http.SameSiteStrictMode, // prevent csrf attack
+		//SameSite: http.SameSiteNoneMode,
+		SameSite: http.SameSiteStrictMode, // prevent csrf attack
 	})
 	govalidator.SetFieldsRequiredByDefault(false)
 
