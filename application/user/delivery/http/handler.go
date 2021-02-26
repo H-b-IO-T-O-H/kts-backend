@@ -62,7 +62,9 @@ func (u *UserHandler) Login(ctx *gin.Context, reqUser models.UserLogin) {
 			Secure:   false,
 			HttpOnly: true,
 			Path:     "/",
-			SameSite: http.SameSiteNoneMode})
+			//SameSite: http.SameSiteNoneMode
+			SameSite: http.SameSiteStrictMode,
+			})
 	}
 	session.Set(common.UserRole, buf.Role)
 	session.Set(common.UserId, buf.ID.String())
