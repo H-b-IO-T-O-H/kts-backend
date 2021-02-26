@@ -134,14 +134,7 @@ func Cors() gin.HandlerFunc {
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 		AllowOriginFunc: func(origin string) bool {
-			return strings.HasPrefix(origin, "http://127.0.0.1") ||
-				strings.HasPrefix(origin, "http://localhost") ||
-				strings.HasPrefix(origin, "https://localhost") ||
-				strings.HasPrefix(origin, "http://10-tka.pp.ua") ||
-				strings.HasPrefix(origin, "https://10-tka.pp.ua") ||
-				strings.HasPrefix(origin, "http://www.10-tka.pp.ua") ||
-				strings.HasPrefix(origin, "https://www.10-tka.pp.ua")
-
+			return strings.HasPrefix(origin, "http")
 		},
 		MaxAge: time.Hour,
 	})
