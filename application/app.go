@@ -106,8 +106,8 @@ func NewApp(config Config) *App {
 		Secure:   true,
 		HttpOnly: true,
 		Path:     "/",
-		//SameSite: http.SameSiteNoneMode,
-		SameSite: http.SameSiteStrictMode, // prevent csrf attack
+		SameSite: http.SameSiteNoneMode,
+		//SameSite: http.SameSiteStrictMode, // prevent csrf attack
 	})
 	govalidator.SetFieldsRequiredByDefault(false)
 

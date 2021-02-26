@@ -139,7 +139,9 @@ func Cors() gin.HandlerFunc {
 				strings.HasPrefix(origin, "https://localhost") ||
 				strings.HasPrefix(origin, "http://10-tka.pp.ua") ||
 				strings.HasPrefix(origin, "https://10-tka.pp.ua") ||
-				strings.HasPrefix(origin, "www.10-tka.pp.ua")
+				strings.HasPrefix(origin, "http://www.10-tka.pp.ua") ||
+				strings.HasPrefix(origin, "https://www.10-tka.pp.ua")
+
 		},
 		MaxAge: time.Hour,
 	})
